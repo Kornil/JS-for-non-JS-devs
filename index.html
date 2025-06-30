@@ -23,8 +23,9 @@
           <h1>JavaScript</h1>
           <p>For non-JavaScript developers</p>
         </section>
+
+        <!-- History of JS -->
         <section>
-          <!-- History of JS -->
           <section>
             <h2>Brief history of JavaScript</h2>
           </section>
@@ -102,13 +103,16 @@
           </section>
           <section>
             <h3>Second golden age: React</h3>
-            <p>In 2013 Facebook revolutionizes the web dev world by creating an endless amount of new jobs to fix React applications.</p>
+            <p>
+              In 2013 Facebook revolutionizes the web dev world by creating an
+              endless amount of new jobs to fix React applications.
+            </p>
             <img src="imgs/react.png" height="200px" />
           </section>
         </section>
-        <section>
-          <!-- JiT -->
 
+        <!-- JiT -->
+        <section>
           <section><h2>What is JiT?</h2></section>
           <section data-auto-animate>
             Is JavaScript a compiled or interpreted language?
@@ -127,9 +131,10 @@
             meaning it is compiled during execution.
           </section>
         </section>
+
+        <!-- JiT in practice -->
         <section>
-          <!-- JiT in a nutshell -->
-          <section><h2>JiT in a nutshell</h2></section>
+          <section><h2>JiT in practice</h2></section>
           <section data-auto-animate>
             <p>Compiler</p>
             <p>Scope</p>
@@ -283,9 +288,14 @@
             </ul>
           </section>
         </section>
-        <section> <!-- Scope -->
+
+        <!-- Scope -->
+        <section>
           <section><h2>Scope</h2></section>
-          <section>Scope is an author defined enviroment where code is evaluated and executed.</section>
+          <section>
+            Scope is an author defined enviroment where code is evaluated and
+            executed.
+          </section>
           <section data-auto-animate>
             <pre><code data-trim class="language-javascript" data-line-numbers="">
               var a = 1;
@@ -330,11 +340,14 @@
             </code></pre>
           </section>
         </section>
-        <section> <!-- Principle of least privilege and scope -->
+
+        <!-- Principle of least privilege and scope -->
+        <section>
           <section><h2>Principle of least privilege and scope</h2></section>
           <section>
             <h3>Function scope</h3>
-            The "default" JS scope works for <span style="color: red">function blocks</span> only. This is bad.
+            The "default" JS scope works for
+            <span style="color: red">function blocks</span> only. This is bad.
           </section>
           <section>
             Examples of scope pollution
@@ -353,7 +366,9 @@
             </code></pre>
           </section>
           <section>
-            The solutions exist, and they called <span style="color: green">let</span> and <span style="color: green">const</span>
+            The solutions exist, and they called
+            <span style="color: green">let</span> and
+            <span style="color: green">const</span>
           </section>
           <section>
             Block scoped
@@ -381,9 +396,9 @@
             </ul>
           </section>
           <section>
-            TODO:
-            Always name your functions, you don't want to be the dev debugging this.
-            <img src="TODO" alt="">
+            Always name your functions, you don't want to be the dev debugging
+            this.
+            <img src="imgs/anon-hell.png" alt="" />
             <pre><code data-trim class="language-javascript" data-line-numbers="">
               setTimeout(() => { // bad
                 console.log(1)
@@ -393,13 +408,171 @@
               setTimeout(a, 1000) // good
             </code></pre>
           </section>
+        </section>
+
+        <!-- this keyword -->
+        <section>
           <section>
-            <ul>While the <span style="color: yellow">function</span> keyword should not be abandoned, its use case (binding <em>this</em>) should be considered niche at best in a modern architecture.
+            <h2><em>this</em> Keyword</h2>
+          </section>
+          <section>
+            <em>this</em> is a special keyword that is not defined by the
+            compiler, but the engine. Its value depends on the place that
+            invoked it.
+          </section>
+          <section>
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              function greetings() {
+                console.log("Hello I am", this.name);
+              }
+
+              var me = {
+                name: "Francesco"
+              }
+              var bossman = {
+                name: "Vlad"
+              }
+
+              greetings.call(me) // Hello I am Francesco
+              greetings.call(bossman) // Hello I am Vlad
+            </code></pre>
+          </section>
+          <section>
+            <ul>
+              While the
+              <span style="color: yellow">function</span>
+              keyword should not be abandoned, its use case (binding
+              <em>this</em
+              >) is an important, albeit somewhat niche, use-case.
             </ul>
           </section>
         </section>
-        <section> <!-- Primitives -->
+
+        <!-- Primitives -->
+        <section>
           <section><h2>Primitives</h2></section>
+          <section>
+            <ul>
+              Primitives:
+              <li>string</li>
+              <li>number (NaN is a number!)</li>
+              <li>boolean</li>
+              <li>undefined</li>
+              <li>null</li>
+              <li>symbol</li>
+              <li>bigint</li>
+            </ul>
+          </section>
+          <section>
+            Primitives are <span style="color: red">immutable</span>, their
+            <em>values</em> cannot be altered, every new value is individually
+            stored in memory.
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              let a = 1;
+              let b = a;
+
+              b = 2;
+
+              console.log(a) // 1
+              console.log(b) // 2
+            </code></pre>
+          </section>
+          <section>
+            While primitives are not objects, they all have a respective object
+            constructor.<br />
+            JavaScript automatically uses object contructors behind the curtains
+            when performing operations on primitives.
+
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              let realString = "a"
+              typeof realString // "string"
+              realString instanceof String // false
+
+              let objectString = new String("b")
+              typeof objectString // "object"
+              objectString instanceof String // true
+            </code></pre>
+          </section>
+          <section>
+            <span style="color: red">undefined</span> is a special primitive, it
+            implicitly represents the absence of a value.
+
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              let a; // undefined
+
+              const b = () => {
+                return; // undefined
+              }
+
+              let c = [1,2].find(n => n === 3) // undefined
+            </code></pre>
+          </section>
+          <section>
+            <ul>
+              <li>
+                <span style="color: red">undefined</span> should not be used
+                explicitly, but only detected implicitly.
+              </li>
+              <li>
+                <span style="color: red">null</span> can be used in cases where
+                we explicitly don't want a value to be returned.
+              </li>
+              <li>
+                <span style="color: red">null</span> and
+                <span style="color: red">undefined</span> have no constructor.
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Objects -->
+        <section>
+          <section><h2>Objects</h2></section>
+          <section>
+            <ul>
+              Everything that is
+              <em>not</em>
+              a primitive is an exotic object, some examples:
+              <li>Array</li>
+              <li>Function</li>
+              <li>Error</li>
+              <li>Date</li>
+              <li>RegExp</li>
+              <li>Set</li>
+              <li>Proxy</li>
+              <li>Reflect</li>
+              <li>Map</li>
+              <li>Math</li>
+              <li>JSON</li>
+              <li>...</li>
+            </ul>
+          </section>
+          <section>
+            Objects are not stored as immutable values, but as reference values.
+            Meaning all variables are connected to the same value and
+            <span style="color: red">no copies are created</span>.
+
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              let a = [1,2];
+              let b = a;
+
+              b.push(3);
+
+              console.log(a) // [1,2,3]
+              console.log(b) // [1,2,3]
+            </code></pre>
+          </section>
+          <section>
+            Reference values means that class inheritance and polymorphism (OOP)
+            as seen in other languages are not easily achievable in
+            JavaScript.<br /><br />
+            Our purpose when writing JavaScript code is not to copy behaviour
+            from other languages, but use JavaScript's own features instead.
+          </section>
+        </section>
+
+        <section> Immutability & Purity
+          <section>Immutability & Purity</section>
         </section>
       </div>
     </div>
