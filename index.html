@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>JS for non JS devs</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>JavaScript</h1>
+          <p>For non-JavaScript developers</p>
+        </section>
+        <section>
+          <!-- History of JS -->
+          <section>
+            <h2>Brief history of JavaScript</h2>
+          </section>
+          <section>
+            <h3>Netscape Navigator & Brendan Eich</h3>
+            <p>
+              In 1995 Netscape tasked Brendan Eich to create a new language for
+              the Web.<br />10 days later HTML, CSS and LiveScript are born.
+            </p>
+            <img src="imgs/livescript.webp" height="80px" />
+          </section>
+          <section>
+            <h3>Officially JavaScript</h3>
+            <p>
+              Netscape renames LiveScript to JavaScript in collaboration with
+              Sun Microsystems as a complement to Java for Web development.
+            </p>
+          </section>
+          <section>
+            <h3>Netscape vs Microsoft</h3>
+            <p>
+              Microsoft reverse engineers JavaScript, creates JScript for
+              Internet Explorer.
+            </p>
+            <img src="imgs/netscapeVSie.webp" height="200px" />
+          </section>
+          <section>
+            <h3>Death of JavaScript</h3>
+            <p>
+              Netscape quickly loses market to IE4. JavaScript dies as its only
+              supported browser is forgotten.
+            </p>
+            <img src="imgs/netscapeVSie.webp" height="200px" />
+          </section>
+          <section>
+            <h3>ECMA</h3>
+            <p>
+              In 1997 Brendan Eich submits JavaScript to ECMA, the nameless
+              language lives on as ECMAScript.
+            </p>
+            <img src="imgs/ecma.png" height="200px" />
+          </section>
+          <section>
+            <h3>The rise of the phoenix</h3>
+            <p>
+              ECMAScript keeps fading until Netscape rises from its ashes as
+              Phoenix, later Firefox.
+            </p>
+            <img src="imgs/2002_phoenix.png" height="200px" />
+          </section>
+          <section>
+            <h3>The first golden age</h3>
+            <p>
+              ECMAScript sees its first golden age as Ajax is released as a set
+              of async technologies using it. JQuery, MooTools and other
+              libraries are released during this period.
+            </p>
+            <img src="imgs/AJAX_logo.png" height="200px" />
+          </section>
+          <section>
+            <h3>Google arrives just in time</h3>
+            <p>
+              In 2008 Google releases Chrome, using a new engine named V8, adds
+              JIT and forces the work on ECMAScript to resume after Microsoft
+              blockade.
+            </p>
+            <img src="imgs/v8.webp" height="200px" />
+          </section>
+          <section>
+            <h3>Ryan Dahl announces Node</h3>
+            <p>Enters JSConf 2009.</p>
+            <p>Anounces Node.</p>
+            <p>Leaves.</p>
+            <img src="imgs/Node.png" height="200px" />
+          </section>
+          <section>
+            <h3>Second golden age: React</h3>
+            <p>In 2013 Facebook revolutionizes the web dev world by creating an endless amount of new jobs to fix React applications.</p>
+            <img src="imgs/react.png" height="200px" />
+          </section>
+        </section>
+        <section>
+          <!-- JiT -->
+
+          <section><h2>What is JiT?</h2></section>
+          <section data-auto-animate>
+            Is JavaScript a compiled or interpreted language?
+          </section>
+          <section data-auto-animate>
+            Is JavaScript a <span style="color: red">compiled</span> or
+            interpreted language?
+          </section>
+          <section data-auto-animate>
+            Is JavaScript a <span style="color: red">compiled</span> or
+            <span style="color: red">interpreted</span> language?
+          </section>
+          <section>
+            JavaScript uses
+            <span style="color: green">Just in Time (JiT)</span> compilation,
+            meaning it is compiled during execution.
+          </section>
+        </section>
+        <section>
+          <!-- JiT in a nutshell -->
+          <section><h2>JiT in a nutshell</h2></section>
+          <section data-auto-animate>
+            <p>Compiler</p>
+            <p>Scope</p>
+            <p>Engine</p>
+          </section>
+          <section data-auto-animate>
+            <p>Compiler</p>
+            <p>Generates & hoist code</p>
+            <p>Scope</p>
+            <p>Engine</p>
+          </section>
+          <section data-auto-animate>
+            <p>Compiler</p>
+            <p>Generates & hoist code</p>
+            <p>Scope</p>
+            <p>Maintains look-up lists</p>
+            <p>Engine</p>
+          </section>
+          <section data-auto-animate>
+            <p>Compiler</p>
+            <p>Generates & hoist code</p>
+            <p>Scope</p>
+            <p>Maintains look-up lists</p>
+            <p>Engine</p>
+            <p>Executes code</p>
+          </section>
+          <section data-auto-animate>
+            Compiler
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              var a = 1;
+
+              function myFunc(b) {
+                console.log(a + b)
+              }
+
+              myFunc(2)
+            </code></pre>
+            How many declarations are in this snippet?
+          </section>
+          <section data-auto-animate>
+            Compiler
+            <pre><code data-trim class="language-javascript" data-line-numbers="1">
+              var a = 1;
+
+              function myFunc(b) {
+                console.log(a + b)
+              }
+
+              myFunc(2)
+            </code></pre>
+            <span style="color: red">a</span> is declared in the global scope.
+          </section>
+          <section data-auto-animate>
+            Compiler
+            <pre><code data-trim class="language-javascript" data-line-numbers="3,5">
+              var a = 1;
+
+              function myFunc(b) {
+                console.log(a + b)
+              }
+
+              myFunc(2)
+            </code></pre>
+            <span style="color: red">myFunc</span> is declared in the global
+            scope.
+          </section>
+          <section data-auto-animate>
+            Compiler
+            <pre><code data-trim class="language-javascript" data-line-numbers="3,5">
+              var a = 1;
+
+              function myFunc(b) {
+                console.log(a + b)
+              }
+
+              myFunc(2)
+            </code></pre>
+            <span style="color: red">b</span> is declared in myFunc scope.
+          </section>
+          <section data-auto-animate>
+            <ul>
+              The engine performs mainly 2 jobs:
+              <li><span style="color: yellow">LHS</span> lookup</li>
+              <li><span style="color: blue">RHS</span> lookup</li>
+            </ul>
+          </section>
+          <section data-auto-animate>
+            <ul>
+              The engine performs mainly 2 jobs:
+              <li>
+                <span style="color: yellow">LHS</span> lookup assigns a value
+              </li>
+              <li><span style="color: blue">RHS</span> lookup</li>
+            </ul>
+          </section>
+          <section data-auto-animate>
+            <ul>
+              The engine performs mainly 2 jobs:
+              <li>
+                <span style="color: yellow">LHS</span> lookup assigns a value
+              </li>
+              <li>
+                <span style="color: blue">RHS</span> lookup retrieves a value
+              </li>
+            </ul>
+          </section>
+          <section data-auto-animate>
+            Compiler
+            <pre><code data-trim class="language-javascript" data-line-numbers="1,3">
+              var a = 1;
+
+              function myFunc(b) {
+                console.log(a + b)
+              }
+
+              myFunc(2)
+            </code></pre>
+            <span style="color: yellow">LHS</span> lookups:
+            <span style="color: red">a</span>,
+            <span style="color: red">b</span> (implicit)
+          </section>
+          <section data-auto-animate>
+            Compiler
+            <pre><code data-trim class="language-javascript" data-line-numbers="1,4,7">
+              var a = 1;
+
+              function myFunc(b) {
+                console.log(a + b)
+              }
+
+              myFunc(2)
+            </code></pre>
+            <span style="color: blue">RHS</span> lookups:
+            <span style="color: red">a</span>,
+            <span style="color: red">myFunc(2)</span>,
+            <span style="color: red">a +</span>,
+            <span style="color: red">+ b</span>
+          </section>
+          <section>
+            <ul>
+              Errors:
+              <li>
+                <span style="color: red">Reference Error</span> is a failure of
+                LHS or RHS lookup, the variable does not exist at the time of
+                lookup.
+              </li>
+              <li>
+                <span style="color: red">Type Error</span> is operation failure
+                on an value found in scope.
+              </li>
+            </ul>
+          </section>
+        </section>
+        <section> <!-- Scope -->
+          <section><h2>Scope</h2></section>
+          <section>Scope is an author defined enviroment where code is evaluated and executed.</section>
+          <section data-auto-animate>
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              var a = 1;
+
+              function myFunc(b) {
+                function myOtherFunc(c) {
+                  console.log(a, b, c)
+                }
+                myOtherFunc(3)
+              }
+
+              myFunc(2) // 1, 2, 3
+            </code></pre>
+            How many variables does each scope have?
+          </section>
+          <section data-auto-animate>
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              var a = 1;
+
+              function myFunc(b) {
+                function myOtherFunc(c) {
+                  console.log(a, b, c)
+                }
+                myOtherFunc(3)
+              }
+
+              myFunc(2) // 1, 2, 3
+            </code></pre>
+            3 scopes, each has one variable
+          </section>
+          <section>
+            Scope lookup stops once it finds a matching variable
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              var a = 1; // shadowed by the other a
+
+              function myFunc() {
+                var a = 2
+                console.log(a)
+              }
+
+              myFunc() // 2
+            </code></pre>
+          </section>
+        </section>
+        <section> <!-- Principle of least privilege and scope -->
+          <section><h2>Principle of least privilege and scope</h2></section>
+          <section>
+            <h3>Function scope</h3>
+            The "default" JS scope works for <span style="color: red">function blocks</span> only. This is bad.
+          </section>
+          <section>
+            Examples of scope pollution
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              for (var i = 0; i < 10; i++) { // false scope
+                console.log(i)
+              }
+
+              if (true) {
+                var b = 20; // false scope
+                function f() { console.log(1) } // false scope
+              }
+
+              console.log(i, b) // 10, 20
+              f(); // 1
+            </code></pre>
+          </section>
+          <section>
+            The solutions exist, and they called <span style="color: green">let</span> and <span style="color: green">const</span>
+          </section>
+          <section>
+            Block scoped
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              for (let i = 0; i < 10; i++) {
+                console.log(i)
+              }
+
+              if (true) {
+                const b = 20;
+                const f = () => { console.log(1) }
+              }
+
+              console.log(i, b) // Reference Error
+              f(); // Reference Error
+            </code></pre>
+          </section>
+          <section>
+            <ul>
+              Advantages of block scope:
+              <li>Automatic garbage collection</li>
+              <li>Least privilege by default</li>
+              <li>Const introduces fixed values</li>
+              <li>Const prevents name reasignment</li>
+            </ul>
+          </section>
+          <section>
+            TODO:
+            Always name your functions, you don't want to be the dev debugging this.
+            <img src="TODO" alt="">
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              setTimeout(() => { // bad
+                console.log(1)
+              }, 1000)
+
+              const a = () => { console.log(1) }
+              setTimeout(a, 1000) // good
+            </code></pre>
+          </section>
+          <section>
+            <ul>While the <span style="color: yellow">function</span> keyword should not be abandoned, its use case (binding <em>this</em>) should be considered niche at best in a modern architecture.
+            </ul>
+          </section>
+        </section>
+        <section> <!-- Primitives -->
+          <section><h2>Primitives</h2></section>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
