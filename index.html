@@ -11,10 +11,18 @@
 
     <link rel="stylesheet" href="dist/reset.css" />
     <link rel="stylesheet" href="dist/reveal.css" />
-    <link rel="stylesheet" href="dist/theme/black.css" />
+    <link rel="stylesheet" href="dist/theme/night.css" />
 
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+    <style>
+      .hl {
+        color: #d18a1d;
+      }
+      .hl2 {
+        color: #1d64d1;
+      }
+    </style>
   </head>
   <body>
     <div class="reveal">
@@ -118,16 +126,16 @@
             Is JavaScript a compiled or interpreted language?
           </section>
           <section data-auto-animate>
-            Is JavaScript a <span style="color: red">compiled</span> or
+            Is JavaScript a <span class="hl">compiled</span> or
             interpreted language?
           </section>
           <section data-auto-animate>
-            Is JavaScript a <span style="color: red">compiled</span> or
-            <span style="color: red">interpreted</span> language?
+            Is JavaScript a <span class="hl">compiled</span> or
+            <span class="hl">interpreted</span> language?
           </section>
           <section>
             JavaScript uses
-            <span style="color: green">Just in Time (JiT)</span> compilation,
+            <span class="hl">Just in Time (JiT)</span> compilation,
             meaning it is compiled during execution.
           </section>
         </section>
@@ -185,7 +193,7 @@
 
               myFunc(2)
             </code></pre>
-            <span style="color: red">a</span> is declared in the global scope.
+            <span class="hl">a</span> is declared in the global scope.
           </section>
           <section data-auto-animate>
             Compiler
@@ -198,7 +206,7 @@
 
               myFunc(2)
             </code></pre>
-            <span style="color: red">myFunc</span> is declared in the global
+            <span class="hl">myFunc</span> is declared in the global
             scope.
           </section>
           <section data-auto-animate>
@@ -212,32 +220,32 @@
 
               myFunc(2)
             </code></pre>
-            <span style="color: red">b</span> is declared in myFunc scope.
+            <span class="hl">b</span> is declared in myFunc scope.
           </section>
           <section data-auto-animate>
             <ul>
               The engine performs mainly 2 jobs:
-              <li><span style="color: yellow">LHS</span> lookup</li>
-              <li><span style="color: blue">RHS</span> lookup</li>
+              <li><span class="hl">LHS</span> lookup</li>
+              <li><span class="hl">RHS</span> lookup</li>
             </ul>
           </section>
           <section data-auto-animate>
             <ul>
               The engine performs mainly 2 jobs:
               <li>
-                <span style="color: yellow">LHS</span> lookup assigns a value
+                <span class="hl">LHS</span> lookup assigns a value
               </li>
-              <li><span style="color: blue">RHS</span> lookup</li>
+              <li><span class="hl">RHS</span> lookup</li>
             </ul>
           </section>
           <section data-auto-animate>
             <ul>
               The engine performs mainly 2 jobs:
               <li>
-                <span style="color: yellow">LHS</span> lookup assigns a value
+                <span class="hl">LHS</span> lookup assigns a value
               </li>
               <li>
-                <span style="color: blue">RHS</span> lookup retrieves a value
+                <span class="hl">RHS</span> lookup retrieves a value
               </li>
             </ul>
           </section>
@@ -252,9 +260,9 @@
 
               myFunc(2)
             </code></pre>
-            <span style="color: yellow">LHS</span> lookups:
-            <span style="color: red">a</span>,
-            <span style="color: red">b</span> (implicit)
+            <span class="hl">LHS</span> lookups:
+            <span class="hl2">a</span>,
+            <span class="hl2">b</span> (implicit)
           </section>
           <section data-auto-animate>
             Compiler
@@ -267,22 +275,22 @@
 
               myFunc(2)
             </code></pre>
-            <span style="color: blue">RHS</span> lookups:
-            <span style="color: red">a</span>,
-            <span style="color: red">myFunc(2)</span>,
-            <span style="color: red">a +</span>,
-            <span style="color: red">+ b</span>
+            <span class="hl">RHS</span> lookups:
+            <span class="hl2">a</span>,
+            <span class="hl2">myFunc(2)</span>,
+            <span class="hl2">a +</span>,
+            <span class="hl2">+ b</span>
           </section>
           <section>
             <ul>
               Errors:
               <li>
-                <span style="color: red">Reference Error</span> is a failure of
+                <span class="hl">Reference Error</span> is a failure of
                 LHS or RHS lookup, the variable does not exist at the time of
                 lookup.
               </li>
               <li>
-                <span style="color: red">Type Error</span> is operation failure
+                <span class="hl">Type Error</span> is operation failure
                 on an value found in scope.
               </li>
             </ul>
@@ -347,7 +355,7 @@
           <section>
             <h3>Function scope</h3>
             The "default" JS scope works for
-            <span style="color: red">function blocks</span> only. This is bad.
+            <span class="hl">function blocks</span> only. This is bad.
           </section>
           <section>
             Examples of scope pollution
@@ -367,8 +375,8 @@
           </section>
           <section>
             The solutions exist, and they called
-            <span style="color: green">let</span> and
-            <span style="color: green">const</span>
+            <span class="hl">let</span> and
+            <span class="hl">const</span>
           </section>
           <section>
             Block scoped
@@ -440,7 +448,7 @@
           <section>
             <ul>
               While the
-              <span style="color: yellow">function</span>
+              <span class="hl">function</span>
               keyword should not be abandoned, its use case (binding
               <em>this</em
               >) is an important, albeit somewhat niche, use-case.
@@ -464,7 +472,7 @@
             </ul>
           </section>
           <section>
-            Primitives are <span style="color: red">immutable</span>, their
+            Primitives are <span class="hl">immutable</span>, their
             <em>values</em> cannot be altered, every new value is individually
             stored in memory.
             <pre><code data-trim class="language-javascript" data-line-numbers="">
@@ -494,7 +502,7 @@
             </code></pre>
           </section>
           <section>
-            <span style="color: red">undefined</span> is a special primitive, it
+            <span class="hl">undefined</span> is a special primitive, it
             implicitly represents the absence of a value.
 
             <pre><code data-trim class="language-javascript" data-line-numbers="">
@@ -510,16 +518,16 @@
           <section>
             <ul>
               <li>
-                <span style="color: red">undefined</span> should not be used
+                <span class="hl">undefined</span> should not be used
                 explicitly, but only detected implicitly.
               </li>
               <li>
-                <span style="color: red">null</span> can be used in cases where
+                <span class="hl">null</span> can be used in cases where
                 we explicitly don't want a value to be returned.
               </li>
               <li>
-                <span style="color: red">null</span> and
-                <span style="color: red">undefined</span> have no constructor.
+                <span class="hl">null</span> and
+                <span class="hl">undefined</span> have no constructor.
               </li>
             </ul>
           </section>
@@ -550,7 +558,7 @@
           <section>
             Objects are not stored as immutable values, but as reference values.
             Meaning all variables are connected to the same value and
-            <span style="color: red">no copies are created</span>.
+            <span class="hl">no copies are created</span>.
 
             <pre><code data-trim class="language-javascript" data-line-numbers="">
               let a = [1,2];
@@ -571,7 +579,8 @@
           </section>
         </section>
 
-        <section> Immutability & Purity
+        <!-- Immutability & Purity -->
+        <section> 
           <section>Immutability & Purity</section>
         </section>
       </div>
