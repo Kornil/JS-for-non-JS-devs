@@ -575,13 +575,72 @@
             as seen in other languages are not easily achievable in
             JavaScript.<br /><br />
             Our purpose when writing JavaScript code is not to copy behaviour
-            from other languages, but use JavaScript's own features instead.
+            from other languages, but use JavaScript's own features to solve the unique problems encountered in a frontend environment.
           </section>
         </section>
 
-        <!-- Immutability & Purity -->
+        <!-- 3 principles for frontend -->
         <section> 
-          <section>Immutability & Purity</section>
+          <section><h2>3 principles for frontend</h2></section>
+          <section>
+            <span class="hl">Immutability</span>: a value (or reference) can not be changed nor altered.
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              const IMMUTABLE = true
+
+              try {
+                IMMUTABLE = false
+              } catch (err) {
+                console.log("nope")
+              }
+
+              // output: "nope"
+            </code></pre>
+          </section>
+          <section>
+            <span class="hl">Pure function</span>: a function that behaves predictably with no side effects (idempotent).
+
+            <pre><code data-trim class="language-javascript" data-line-numbers="4">
+              const num1 = 1;
+              const num2 = 2;
+
+              const sum = (a,b) => a + b;
+
+              const num3 = f(num1, num2)
+
+              console.log(num1) // 1
+              console.log(num2) // 2
+              console.log(num3) // 3
+            </code></pre>
+          </section>
+          <section>
+            Being reduced to simple input -> output, pure functions are predictable and easily testable.
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              for (let i = 0; i < 100; i++) {
+                // run this test 100 times
+                test('adding 2 numbers results in their sum', () => {
+                  const r1 = Math.floor(Math.random() * 10) + 1 // 1-10
+                  const r2 = Math.floor(Math.random() * 10) + 1 // 1-10
+
+                  expect(sum(r1, r2)).toBe(r1 + r2);
+                });
+              }
+            </code></pre>
+          </section>
+          <section>
+            <p><span class="hl">Single source of truth</span>: there's only one value, everything else is a reference to it.</p>
+            <img src="imgs/one-way-data-flow.png" height="320px" />
+          </section>
+        </section>
+
+        <!-- React -->
+        <section>
+          <section><h2>React</h2></section>
+
+        </section>
+        <section>
+          <em>Code you don't understand is code you can't trust.</em><br /><br />
+
+          If you need to execute code to understand it, there's a problem with the code.
         </section>
       </div>
     </div>
