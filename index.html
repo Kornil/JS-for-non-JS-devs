@@ -126,8 +126,8 @@
             Is JavaScript a compiled or interpreted language?
           </section>
           <section data-auto-animate>
-            Is JavaScript a <span class="hl">compiled</span> or
-            interpreted language?
+            Is JavaScript a <span class="hl">compiled</span> or interpreted
+            language?
           </section>
           <section data-auto-animate>
             Is JavaScript a <span class="hl">compiled</span> or
@@ -135,8 +135,8 @@
           </section>
           <section>
             JavaScript uses
-            <span class="hl">Just in Time (JiT)</span> compilation,
-            meaning it is compiled during execution.
+            <span class="hl">Just in Time (JiT)</span> compilation, meaning it
+            is compiled during execution.
           </section>
         </section>
 
@@ -206,8 +206,7 @@
 
               myFunc(2)
             </code></pre>
-            <span class="hl">myFunc</span> is declared in the global
-            scope.
+            <span class="hl">myFunc</span> is declared in the global scope.
           </section>
           <section data-auto-animate>
             Compiler
@@ -232,21 +231,15 @@
           <section data-auto-animate>
             <ul>
               The engine performs mainly 2 jobs:
-              <li>
-                <span class="hl">LHS</span> lookup assigns a value
-              </li>
+              <li><span class="hl">LHS</span> lookup assigns a value</li>
               <li><span class="hl">RHS</span> lookup</li>
             </ul>
           </section>
           <section data-auto-animate>
             <ul>
               The engine performs mainly 2 jobs:
-              <li>
-                <span class="hl">LHS</span> lookup assigns a value
-              </li>
-              <li>
-                <span class="hl">RHS</span> lookup retrieves a value
-              </li>
+              <li><span class="hl">LHS</span> lookup assigns a value</li>
+              <li><span class="hl">RHS</span> lookup retrieves a value</li>
             </ul>
           </section>
           <section data-auto-animate>
@@ -260,8 +253,7 @@
 
               myFunc(2)
             </code></pre>
-            <span class="hl">LHS</span> lookups:
-            <span class="hl2">a</span>,
+            <span class="hl">LHS</span> lookups: <span class="hl2">a</span>,
             <span class="hl2">b</span> (implicit)
           </section>
           <section data-auto-animate>
@@ -275,23 +267,20 @@
 
               myFunc(2)
             </code></pre>
-            <span class="hl">RHS</span> lookups:
-            <span class="hl2">a</span>,
-            <span class="hl2">myFunc(2)</span>,
-            <span class="hl2">a +</span>,
+            <span class="hl">RHS</span> lookups: <span class="hl2">a</span>,
+            <span class="hl2">myFunc(2)</span>, <span class="hl2">a +</span>,
             <span class="hl2">+ b</span>
           </section>
           <section>
             <ul>
               Errors:
               <li>
-                <span class="hl">Reference Error</span> is a failure of
-                LHS or RHS lookup, the variable does not exist at the time of
-                lookup.
+                <span class="hl">Reference Error</span> is a failure of LHS or
+                RHS lookup, the variable does not exist at the time of lookup.
               </li>
               <li>
-                <span class="hl">Type Error</span> is operation failure
-                on an value found in scope.
+                <span class="hl">Type Error</span> is operation failure on an
+                value found in scope.
               </li>
             </ul>
           </section>
@@ -518,18 +507,36 @@
           <section>
             <ul>
               <li>
-                <span class="hl">undefined</span> should not be used
-                explicitly, but only detected implicitly.
+                <span class="hl">undefined</span> should not be used explicitly,
+                but only detected implicitly.
               </li>
               <li>
-                <span class="hl">null</span> can be used in cases where
-                we explicitly don't want a value to be returned.
+                <span class="hl">null</span> can be used in cases where we
+                explicitly don't want a value to be returned.
               </li>
               <li>
                 <span class="hl">null</span> and
                 <span class="hl">undefined</span> have no constructor.
               </li>
             </ul>
+          </section>
+          <section>
+            In an average interaction, the difference between
+            <span class="hl">null</span> and
+            <span class="hl">undefined</span> should not matter.<br /><br />
+
+            Less specific falsy checks are less prone to errors than type
+            specific ones.
+
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              let obj = { a: 1, b: null };
+
+              typeof a.b === "undefined" // false
+              typeof a.c === "undefined" // true
+
+              !a.b // true
+              !a.c // true
+            </code></pre>
           </section>
         </section>
 
@@ -575,29 +582,17 @@
             as seen in other languages are not easily achievable in
             JavaScript.<br /><br />
             Our purpose when writing JavaScript code is not to copy behaviour
-            from other languages, but use JavaScript's own features to solve the unique problems encountered in a frontend environment.
+            from other languages, but use JavaScript's own features to solve the
+            unique problems encountered in a frontend environment.
           </section>
         </section>
 
-        <!-- 3 principles for frontend -->
-        <section> 
-          <section><h2>3 principles for frontend</h2></section>
+        <!-- Pure Functions -->
+        <section>
+          <section><h2>Pure Functions</h2></section>
           <section>
-            <span class="hl">Immutability</span>: a value (or reference) can not be changed nor altered.
-            <pre><code data-trim class="language-javascript" data-line-numbers="">
-              const IMMUTABLE = true
-
-              try {
-                IMMUTABLE = false
-              } catch (err) {
-                console.log("nope")
-              }
-
-              // output: "nope"
-            </code></pre>
-          </section>
-          <section>
-            <span class="hl">Pure function</span>: a function that behaves predictably with no side effects (idempotent).
+            <span class="hl">Pure functions</span> are functions devoid of side
+            effects, making them more reliable and easier to understand.
 
             <pre><code data-trim class="language-javascript" data-line-numbers="4">
               const num1 = 1;
@@ -613,7 +608,9 @@
             </code></pre>
           </section>
           <section>
-            Being reduced to simple input -> output, pure functions are predictable and easily testable.
+            Idempotency (same input -> same output) create predictable and
+            easily testable code regardless of how many times it is executed.
+
             <pre><code data-trim class="language-javascript" data-line-numbers="">
               for (let i = 0; i < 100; i++) {
                 // run this test 100 times
@@ -627,20 +624,160 @@
             </code></pre>
           </section>
           <section>
-            <p><span class="hl">Single source of truth</span>: there's only one value, everything else is a reference to it.</p>
-            <img src="imgs/one-way-data-flow.png" height="320px" />
+            Refactoring code to pure functions can lead to more modular code as
+            well.
+
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+            const addNum = (arr) => { // impure
+              arr.push(arr.length + 1)
+            }
+
+            let numbers = [1,2,3,4]
+            addNum(numbers)
+
+            numbers // [1,2,3,4,11]
+          </code></pre>
+
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+            const addNum = (arr) => { // pure
+              return arr.length + 1
+            }
+
+            let numbers = [1,2,3,4]
+            numbers.push(addNum(numbers))
+
+            numbers // [1,2,3,4,10]
+          </code></pre>
+          </section>
+          <section>
+            Reducing side effects in an application state can reduce the
+            occurrence of unexpected bugs, raising confidence and readibility in
+            the code.
           </section>
         </section>
 
-        <!-- React -->
+        <!-- Immutability -->
         <section>
-          <section><h2>React</h2></section>
+          <section><h2>Immutability</h2></section>
+          <section>
+            While purity allows us to change our state only once,
+            <span class="hl">immutability</span> allows us to not change it at
+            all.
+          </section>
+          <section>
+            JavaScript primitives are immutable, but objects are not.
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+            const a = 1
+            a = 2 // TypeError!
 
+            const b = { a: 1 }
+            b.a = 2 // { a: 2 }
+          </code></pre>
+          </section>
+          <section>
+            Both JavaScript and TypeScript provide utilities to make objects
+            readonly, but they are only shallow.
+
+            <pre><code data-trim class="language-typescript" data-line-numbers="">
+              const x = Object.freeze({ a: 1, b: { c: 2 }})
+
+              x.a = 2 // error
+              x.b.c = 1 // allowed
+            </code></pre>
+
+            <pre><code data-trim class="language-typescript" data-line-numbers="">
+              <script type="text/template">
+              const x: Readonly<any> = { a: 1, b: { c: 2 }};
+
+              x.a = 2 // error
+              x.b.c = 1 // allowed
+              </script>
+            </code></pre>
+          </section>
+          <section>
+            Immutability is achieved by discarding old values and creating new
+            ones to keep our state up to date, never mutating existing values.
+
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              const updateUserRole = (user, role) => {
+                const newUser = { ...user, role }
+
+                return newUser
+              }
+            </code></pre>
+          </section>
+          <section>
+            While there are tricks and libraries that allow deep immutability,
+            the issue is in our way of thinking about our code, more than the
+            tools we use.
+            <br /><br />
+
+            <em>You should treat all data as immutable by default.</em>
+          </section>
         </section>
-        <section>
-          <em>Code you don't understand is code you can't trust.</em><br /><br />
 
-          If you need to execute code to understand it, there's a problem with the code.
+        <!-- Single source of truth -->
+        <section>
+          <section><h2>Single source of truth</h2></section>
+          <section>
+            <em
+              >There's only one value, everything else is a reference to it.</em
+            ><br /><br />
+
+            By having a centralized application state, the UI needs only to
+            listen to a single entity, and update only when that entity is
+            updated.<br /><br />
+
+            This greatly simplifies how a UI is written and brings down
+            maintenance time considerably.
+          </section>
+          <section>
+            An immutable, single source of truth store, using pure functions for
+            updates.
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              const reducer = (state, { type } = {}) => {
+                switch(type) {
+                  case 'increment':
+                    return { value: state.value + 1 }
+                  default:
+                    return state
+                }
+              }
+
+              export const store = {
+                state: { value: 1 },
+                dispatch: function (action) {
+                  this.state = reducer(this.state, action)
+                }
+              }
+
+              store.state // { value: 1 }
+              store.dispatch({ type: "increment" })
+              store.state // { value: 2 }
+            </code></pre>
+          </section>
+          <section>
+            Making it truly immutable
+
+            <pre><code data-trim class="language-javascript" data-line-numbers="1,4,6">
+              const state = { value: 1 }
+
+              export const store = {
+                state: Object.freeze({ value: 1 }),
+                dispatch: function (action) {
+                  state = reducer(state, action)
+                }
+              }
+            </code></pre>
+          </section>
+        </section>
+
+        <section>
+          <em>Code you don't understand is code you can't trust.</em
+          ><br /><br />
+
+          If you need to execute code to understand it, there's a problem with
+          the code.
         </section>
       </div>
     </div>
