@@ -587,6 +587,50 @@
           </section>
         </section>
 
+        <section>
+          <section>
+            <h2>Async</h2>
+          </section>
+          <section>
+            This is called <span class="hl">callback hell</span>
+
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              fetchItalianJoke((joke) => {
+                // if (...)
+                translateJokeToRomanian(joke, (translateJoke) => {
+                  // if (...)
+                  doubleCheckTranslation(translateJoke, (correctTranslatedJoke) => {
+                    // if (...)
+                    postJoke(correctTranslatedJoke, () => {
+                      // if (...)
+                      console.log("Done!")
+                    })
+                  })
+                })
+              })
+            </code></pre>
+            I have omitted reject/error for readibility reasons.
+          </section>
+          <section>
+            This is the same code, using <span class="hl">async/await</span>
+
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              const getJoke = async () => {
+                try {
+                  const joke = await fetchItalianJoke()
+                  const translatedJoke = await translateJokeToRomanian(joke)
+                  const correctTranslatedJoke = await doubleCheckTranslation(translatedJoke)
+
+                  await postJoke(correctTranslatedJoke)
+                  console.log("Done!")
+                } catch (err) { // err is block scoped!
+                  console.error(err)
+                }
+              }
+            </code></pre>
+          </section>
+        </section>
+
         <!-- Pure Functions -->
         <section>
           <section><h2>Pure Functions</h2></section>
