@@ -22,6 +22,9 @@
       .hl2 {
         color: #1d64d1;
       }
+      .error {
+        color: #d1301d;
+      }
     </style>
   </head>
   <body>
@@ -79,7 +82,7 @@
           <section>
             <h3>The first golden age</h3>
             <p>
-              ECMAScript sees its first golden age as Ajax, set on technologies for JavaScript and XML is released. JQuery, MooTools and many other
+              ECMAScript sees its first golden age as Ajax, a set on technologies for JavaScript and XML, gets released. JQuery, MooTools and many other
               libraries are released during this period.
             </p>
             <img src="imgs/AJAX_logo.png" height="200px" />
@@ -88,7 +91,7 @@
             <h3>Google arrives just in time</h3>
             <p>
               In 2008 Google releases Chrome, using a new engine named V8, adds
-              JIT and forces the work on ECMAScript to resume after Microsoft
+              JiT and forces the work on ECMAScript to resume after Microsoft
               blockade, ES5 finally sees the light of day.
             </p>
             <img src="imgs/v8.webp" height="200px" />
@@ -117,12 +120,12 @@
             Is JavaScript a compiled or interpreted language?
           </section>
           <section data-auto-animate>
-            Is JavaScript a <span class="hl">compiled</span> or interpreted
+            Is JavaScript a <span class="error">compiled</span> or interpreted
             language?
           </section>
           <section data-auto-animate>
-            Is JavaScript a <span class="hl">compiled</span> or
-            <span class="hl">interpreted</span> language?
+            Is JavaScript a <span class="error">compiled</span> or
+            <span class="error">interpreted</span> language?
           </section>
           <section>
             JavaScript uses
@@ -135,25 +138,25 @@
         <section>
           <section><h2>JiT in practice</h2></section>
           <section data-auto-animate>
-            <p>Compiler</p>
+            <p>Compiler (TypeScript lives here!)</p>
             <p>Scope</p>
             <p>Engine</p>
           </section>
           <section data-auto-animate>
-            <p>Compiler</p>
+            <p>Compiler (TypeScript lives here!)</p>
             <p>Generates & hoist code</p>
             <p>Scope</p>
             <p>Engine</p>
           </section>
           <section data-auto-animate>
-            <p>Compiler</p>
+            <p>Compiler (TypeScript lives here!)</p>
             <p>Generates & hoist code</p>
             <p>Scope</p>
             <p>Maintains look-up lists</p>
             <p>Engine</p>
           </section>
           <section data-auto-animate>
-            <p>Compiler</p>
+            <p>Compiler (TypeScript lives here!)</p>
             <p>Generates & hoist code</p>
             <p>Scope</p>
             <p>Maintains look-up lists</p>
@@ -383,6 +386,11 @@
               <li>Const prevents name reasignment</li>
             </ul>
           </section>
+        </section>
+
+        <!-- Naming interlude -->
+        <section>
+          <section><h2>Interlude #1</h2></section>
           <section>
             Always name your functions, you don't want to be the dev debugging
             this.
@@ -404,9 +412,8 @@
             <h2><em>this</em> Keyword</h2>
           </section>
           <section>
-            <em>this</em> is a special keyword that is not defined by the
-            compiler, but the engine. Its value depends on the place that
-            invoked it.
+            <span class="hl"><em>this</em></span> is a special reference that is not defined by the
+            compiler, but the engine. Its value depends on the place that invoked it.
           </section>
           <section>
             <pre><code data-trim class="language-javascript" data-line-numbers="">
@@ -424,15 +431,6 @@
               greetings.call(me) // Hello I am Francesco
               greetings.call(bossman) // Hello I am Vlad
             </code></pre>
-          </section>
-          <section>
-            <ul>
-              While the
-              <span class="hl">function</span>
-              keyword should not be abandoned, its use case (binding
-              <em>this</em
-              >) is an important, albeit somewhat niche, use-case.
-            </ul>
           </section>
         </section>
 
@@ -466,8 +464,6 @@
             </code></pre>
           </section>
           <section>
-            While primitives are not objects, they all have a respective object
-            constructor.<br />
             JavaScript automatically uses object contructors behind the curtains
             when performing operations on primitives.
 
@@ -480,6 +476,8 @@
               typeof objectString // "object"
               objectString instanceof String // true
             </code></pre>
+
+            Never use object constructors to define a primitive.
           </section>
           <section>
             <span class="hl">undefined</span> is a special primitive, it
@@ -516,8 +514,7 @@
             <span class="hl">null</span> and
             <span class="hl">undefined</span> should not matter.<br /><br />
 
-            Less specific falsy checks are less prone to errors than type
-            specific ones.
+            More generic falsy checks are safer when the type difference does not matter.
 
             <pre><code data-trim class="language-javascript" data-line-numbers="">
               let obj = { a: 1, b: null };
@@ -569,19 +566,66 @@
             </code></pre>
           </section>
           <section>
-            Reference values means that class inheritance and polymorphism (OOP)
-            as seen in other languages are not easily achievable in
-            JavaScript.<br /><br />
+            Class inheritance and polymorphism (OOP) as seen in other languages are not concepts that JavaScript inherits.<br /> <br />
+            JavaScript uses prototypal inheritance, meaning each object has a prototype property, which point to another object (or null!) recursively.
+            Objects inherit from other objects in a dynamic rather than static way.
+          </section>
+          <section>
+            Java inheritance
+
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              class Animal {
+                void bark() {
+                  System.out.println("ham ham");
+                }
+              }
+
+              class Dog extends Animal {
+                void eat() {
+                  System.out.println("gnam gnam");
+                }
+              }
+
+              public class Main {
+                public static void main(String[] args) {
+                  Dog dog = new Dog();
+                  dog.eat(); // Own method
+                  dog.bark(); // Inherited method
+                }
+              }
+            </code></pre>
+          </section>
+          <section>
+            JavaScript prototypal inheritance
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              const animal = {
+                bark: () => console.log('ham ham')
+              };
+
+              const dog = Object.create(animal);
+              dog.eat = () => console.log('gnam gnam');
+
+              dog.eat(); // Own method
+              dog.bark(); // Inherited method
+
+              animal.bark = () => console.log('bau bau')
+
+              dog.bark(); // bau bau
+            </code></pre>
+          </section>
+          <section>Trying to emulate classical inheritance in JavaScript tends to generate hard to understand code and hard to debug problems linked to the way reference works.
+          </section>
+          <section>
             Our purpose when writing JavaScript code is not to copy behaviour
             from other languages, but use JavaScript's own features to solve the
             unique problems encountered in a frontend environment.
           </section>
         </section>
 
-        <!-- Async -->
+        <!-- Async interlude -->
         <section>
           <section>
-            <h2>Async</h2>
+            <h2>Interlude #2</h2>
           </section>
           <section>
             This is called <span class="hl">callback hell</span>
@@ -601,7 +645,7 @@
                 })
               })
             </code></pre>
-            I have omitted reject/error for readibility reasons.
+            I have omitted reject/error for readibility purposes. There are at least 8 block scopes excluding a wrapper function. Promises return a similar result.
           </section>
           <section>
             This is the same code, using <span class="hl">async/await</span>
@@ -620,6 +664,7 @@
                 }
               }
             </code></pre>
+            3 Block scopes, adding 10 more awaits will still max out at 3 block scopes.
           </section>
         </section>
 
@@ -669,9 +714,7 @@
             }
 
             let numbers = [1,2,3,4]
-            addNum(numbers)
-
-            numbers // [1,2,3,4,11]
+            addNum(numbers) // side effect on numbers
           </code></pre>
 
             <pre><code data-trim class="language-javascript" data-line-numbers="">
@@ -680,9 +723,7 @@
             }
 
             let numbers = [1,2,3,4]
-            numbers.push(addNum(numbers))
-
-            numbers // [1,2,3,4,10]
+            let number = addNum(numbers) // no side effects
           </code></pre>
           </section>
           <section>
@@ -780,7 +821,7 @@
                 }
               }
 
-              export const store = {
+              const store = {
                 state: { value: 1 },
                 dispatch: function (action) {
                   this.state = reducer(this.state, action)
@@ -793,18 +834,31 @@
             </code></pre>
           </section>
           <section>
-            Making it truly immutable
+            Making it immutable by hiding the state and exposing a fronzen object to views.
 
             <pre><code data-trim class="language-javascript" data-line-numbers="1,4,6">
-              const state = { value: 1 }
+              const stateSymbol = Symbol("state");
 
-              export const store = {
-                state: Object.freeze({ value: 1 }),
+              const store = {
+                [stateSymbol]: { value: 1 },
+                getters: function () {
+                  return Object.freeze(this[stateSymbol])
+                },
                 dispatch: function (action) {
-                  state = reducer(state, action)
+                  this[stateSymbol] = reducer(this[stateSymbol], action)
                 }
               }
             </code></pre>
+          </section>
+        </section>
+
+        <!-- Libraries -->
+        <section>
+          <section>Libraries</section>
+
+
+          <section>
+            lodash
           </section>
         </section>
 
@@ -812,7 +866,7 @@
           <em>Code you don't understand is code you can't trust.</em
           ><br /><br />
 
-          If you need to execute code to understand it, there's a problem with
+          If you need to execute it to understand it, there's a problem with
           the code.
         </section>
       </div>
