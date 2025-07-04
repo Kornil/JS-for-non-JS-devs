@@ -865,13 +865,50 @@
           </section>
         </section>
 
-        <!-- Libraries -->
+        <!-- npm -->
         <section>
-          <section>Libraries</section>
-
-
+          <section><h2>The node package manager</h2></section>
+          <section>The JavaScript ecosystem is built around small, user created modular libraries. The ecosystem exploded during the last decades, with more than 2 million packages currently hosted on npm.</section>
           <section>
-            lodash
+            npm packages are just JavaScript project, and as any project, they can import other projects. THis can lead to immense dependency trees usually multiple GBs in size.
+            <img src="/TODO" alt="Meme comparing a node_modules folder to the density of a black hole." />
+          </section>
+          <section>
+            The user-created nature and deeply nested structure of npm modules can lead to structural issues in even the best curated codebases.
+
+            <img src="/TODO" alt="XKCD comic showing a giant tower of blocks labeled 'All Modern Digital Infrastructure' resting on one tiny, crucial support block labeled: 'A project some random person in Nebraska has been thanklessly maintaining since 2003.'" />
+          </section>
+          <section>
+            <ul>
+              The left-pad incident
+              <li>In 2016 kik asked npm to give them the rights over a package called kik owned by a developer called Azer Koçulu.</li>
+              <li>npm agreed with kik, removing ownership of the package from Koçulu.</li>
+              <li>As a protest, Koçulu removed from npm his 273 packages, including left-pad an 11-lines script and a critical dependency of babel, among others.</li>
+              <li>Internet goes down. Companies like Meta, Netflix, Spotify and Paypal are affected.</li>
+              <li>npm unpublishes left-pad, tightening their rules around dependency-packages.</li>
+            </ul>
+          </section>
+          <section>
+            Unlike Maven for Java, npm relies on open source contributions from any developer with an internet access. This makes the ecosystem better, but increases the attack surface for supply chain attacks.
+          </section>
+        </section>
+
+        <!-- Libraries and the evolution of JS -->
+        <section>
+          <section>Libraries and the evolution of JS</section>
+          <section>
+            The contributions from the open source community cannot be understated for the growth of JavaScript.<br /> <br />
+            Many features like Promises (bluebird), the fetch API (jQuery), .map and .filter, (lodash) and even the import/export syntax (node) were inspired by open source libraries.<br /><br />
+            
+            Avoiding external libraries is not the point, knowing the features of the language is.
+          </section>
+          <section>
+            <ul>
+              Should I use a library?
+              <li>Is the problem the library solves already solved by modern JavaScript?</li>
+              <li>Does the library solve a complex problem?</li>
+              <li>Is the library healthy?</li>
+            </ul>
           </section>
         </section>
 
