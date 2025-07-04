@@ -607,6 +607,26 @@
               dog.bark(); // bau bau
             </code></pre>
           </section>
+          <section>
+            JavaScript prototypal inheritance, class syntax
+
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+            	class Animal {
+                bark() { console.log('ham ham'); }
+              }
+              
+            	class Dog extends Animal {
+                eat() { console.log('gnam gnam'); }
+              }
+            
+            	const myDog = new Dog();
+            	myDog.eat();  // Own method
+            	myDog.bark(); // Inherited method
+            
+            	Animal.prototype.bark = () => console.log('bau bau');
+            	myDog.bark(); // bau bau
+            </code></pre>
+          </section>
           <section>Trying to emulate classical inheritance in JavaScript tends to generate hard to understand code and hard to debug problems linked to the way reference works.
           </section>
           <section>
