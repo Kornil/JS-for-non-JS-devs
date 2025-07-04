@@ -44,7 +44,7 @@
             <h3>Netscape Navigator & Brendan Eich</h3>
             <p>
               In 1995 Netscape tasked Brendan Eich to create a new language for
-              the Web.<br />10 days later HTML, CSS and LiveScript are born.
+              the Web.<br />10 days later LiveScript is born.
             </p>
             <p>As a collaboration with Sun Microsystems, LiveScript is renamed JavaScript as a complement to Java for web development.</p>
             <img src="imgs/livescript.webp" height="80px" />
@@ -694,7 +694,7 @@
 
               const sum = (a,b) => a + b;
 
-              const num3 = f(num1, num2)
+              const num3 = sum(num1, num2)
 
               console.log(num1) // 1
               console.log(num2) // 2
@@ -854,7 +854,7 @@
 
               const store = {
                 [stateSymbol]: { value: 1 },
-                getters: function () {
+                getState: function () {
                   return Object.freeze(this[stateSymbol])
                 },
                 dispatch: function (action) {
@@ -883,9 +883,10 @@
               The left-pad incident
               <li>In 2016 kik asks npm the rights over the kik package owned by Azer Koçulu.</li>
               <li>npm agrees, removing the ownership from Koçulu.</li>
-              <li>Koçulu removes his 273 packages, including left-pad a critical dependency of babel, among others.</li>
-              <li>Internet goes down. Companies like Meta, Netflix, Spotify and Paypal are affected.</li>
-              <li>npm unpublishes left-pad and tightens their rules around dependency-packages.</li>
+              <li>Koçulu removes his 273 packages from npm, including left-pad.</li>
+              <li>Widespread installation failures for tools like Babel halt development for countless companies.</li>
+              <li>Major companies like Meta, Netflix, Spotify and Paypal are affected.</li>
+              <li>npm restores left-pad and tightens rules around unpublishing packages with dependents.</li>
             </ul>
           </section>
           <section>
