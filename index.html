@@ -93,7 +93,7 @@
           <section>
             <h3>Ryan Dahl announces Node</h3>
             <p>Enters JSConf 2009.</p>
-            <p>Anounces Node.</p>
+            <p>Announces Node.</p>
             <p>Leaves.</p>
             <img src="imgs/Node.png" height="200px" />
           </section>
@@ -278,7 +278,7 @@
         <section>
           <section><h2>Scope</h2></section>
           <section>
-            Scope is an author defined enviroment where code is evaluated and
+            Scope is an author defined environment where code is evaluated and
             executed.
           </section>
           <section data-auto-animate>
@@ -458,7 +458,7 @@
             </code></pre>
           </section>
           <section>
-            JavaScript automatically uses object contructors behind the curtains
+            JavaScript automatically uses object constructors behind the curtains
             when performing operations on primitives.
 
             <pre><code data-trim class="language-javascript" data-line-numbers="">
@@ -624,6 +624,7 @@
             	Animal.prototype.bark = () => console.log('bau bau');
             	myDog.bark(); // bau bau
             </code></pre>
+            This works because 'class' is just syntactic sugar for the prototype system.
           </section>
           <section>Trying to emulate classical inheritance in JavaScript tends to generate hard to understand code and hard to debug problems linked to the way reference works.
           </section>
@@ -846,7 +847,7 @@
             </code></pre>
           </section>
           <section>
-            Making it immutable by hiding the state and exposing a fronzen object to views.
+            Making it immutable by hiding the state and exposing a frozen object to views.
 
             <pre><code data-trim class="language-javascript" data-line-numbers="1,4,6">
               const stateSymbol = Symbol("state");
