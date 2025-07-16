@@ -682,6 +682,28 @@
             similar result.
           </section>
           <section>
+            <p>
+              Promises flatten the pyramid by allowing us to
+              <span class="hl">chain asynchronous calls</span>. They also provide a
+               <span class="hl">centralized.catch()</span> for error handling.
+            </p>
+            <pre><code data-trim class="language-javascript" data-line-numbers="">
+              fetchItalianJoke()
+                .then(joke => translateJokeToRomanian(joke))
+                .then(translatedJoke => doubleCheckTranslation(translatedJoke))
+                .then(correctTranslatedJoke => postJoke(correctTranslatedJoke))
+                .then(() => {
+                  console.log("Done!")
+                })
+                .catch(err => {
+                  console.error(err)
+                })
+            </code></pre>
+            <p>
+              While an improvement, this pattern is still verbose.
+            </p>
+          </section>
+          <section>
             This is the same code, using <span class="hl">async/await</span>
 
             <pre><code data-trim class="language-javascript" data-line-numbers="">
